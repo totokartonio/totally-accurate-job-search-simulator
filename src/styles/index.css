@@ -1,0 +1,11 @@
+:root {
+  --radius-sm: 4px;
+  /* Colors */
+  --border: black;
+  --backdrop: rgba(255, 255, 255, 0.6);
+  --light-gray: #ccc;
+  --dark-gray: #333;
+
+  /* Spacing */
+  --space-1: 4px;
+}
