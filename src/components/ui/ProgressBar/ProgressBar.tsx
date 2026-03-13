@@ -9,7 +9,9 @@ type Props = {
 const ProgressBar = ({ value, label, id }: Props) => {
   return (
     <div>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className={styles.label}>
+        {label}
+      </label>
       <progress
         id={id}
         max="100"

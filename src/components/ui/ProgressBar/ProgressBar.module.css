@@ -5,21 +5,26 @@
   border-radius: 4px;
   overflow: hidden;
   border: none;
-  background: #eee;
+  background: var(--light-gray);
 }
 
 .progress::-webkit-progress-bar {
-  background: #eee;
+  background: var(--light-gray);
 }
 
 .progress::-webkit-progress-value {
-  background: #333;
+  background: var(--accent);
   border-radius: 4px;
   transition: width 1s ease;
 }
 
 .progress::-moz-progress-bar {
-  background: #333;
+  background: var(--accent);
   border-radius: 4px;
   transition: width 1s ease;
+}
+
+.label {
+  color: var(--medium-gray);
+  font-size: var(--font-size-base);
 }

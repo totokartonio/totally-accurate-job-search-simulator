@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./LoadingScreen.module.css";
 import { LOADING_QUOTES } from "../../data/loadingQuotes";
 import ProgressBar from "../ui/ProgressBar";
+import Button from "../ui/Button";
 
 type Props = {
   onComplete: () => void;
@@ -44,18 +45,27 @@ const LoadingScreen = ({ onComplete }: Props) => {
     <div className={styles.container}>
       {state === "loading" ? (
         <>
-          <h2>Analyzing your application</h2>
+          <h1>Analyzing your application</h1>
           <ProgressBar
             label="Your application is being observed"
             value={value}
             id="application"
           />
-          <div>{LOADING_QUOTES[quoteIndex]}</div>{" "}
+          <div key={quoteIndex} className={styles.quote}>
+            {LOADING_QUOTES[quoteIndex]}
+          </div>{" "}
         </>
       ) : (
         <>
-          <h2>Analysis complete</h2>
-          <button onClick={onComplete}>See the results</button>
+          <h1>Analysis complete</h1>
+          <div>
+            <p>
+              Thank you for your patience.
+              <br />
+              Your application has been thoroughly reviewed by our team.
+            </p>
+          </div>
+          <Button onClick={onComplete}>View your application status</Button>
         </>
       )}
     </div>

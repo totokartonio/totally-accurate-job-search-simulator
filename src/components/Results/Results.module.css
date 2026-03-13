@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.accent {
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}

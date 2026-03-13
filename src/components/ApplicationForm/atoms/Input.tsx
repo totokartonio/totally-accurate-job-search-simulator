@@ -24,9 +24,9 @@ const Input = ({
 }: Props) => {
   return (
     <div className={styles.input}>
-      <label htmlFor={id}>
+      <label htmlFor={id} className={styles.label}>
         {label}
-        {required && <sup>*</sup>}
+        {required && <sup className={styles.required}>*</sup>}
       </label>
       <input
         type={type}

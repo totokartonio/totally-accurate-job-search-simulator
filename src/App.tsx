@@ -1,9 +1,10 @@
 import { useState } from "react";
 import ApplicationForm from "./components/ApplicationForm";
-import Layout from "./components/ui/Layout";
+import ContentCard from "./components/ui/ContentCard";
 import LoadingScreen from "./components/LoadingScreen";
 import Results from "./components/Results";
 import StartScreen from "./components/StartScreen";
+import Layout from "./components/ui/Layout";
 
 type StateType = "start" | "form" | "loading" | "results";
 
@@ -22,10 +23,9 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Totally Accurate Job Search Simulator</h1>
-      <Layout>{renderComponent()}</Layout>
-    </>
+    <Layout>
+      <ContentCard>{renderComponent()}</ContentCard>
+    </Layout>
   );
 }
 

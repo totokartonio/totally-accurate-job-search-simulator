@@ -1,6 +1,7 @@
 import styles from "../ApplicationForm.module.css";
 import type { ChangeEvent } from "react";
 import { useRef } from "react";
+import Button from "../../ui/Button";
 
 type Props = {
   isUploaded: boolean;
@@ -11,7 +12,7 @@ type Props = {
 const Autofill = ({ isUploaded, isLoading, onFileSelect }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <section className={styles.autofill}>
+    <section className={styles.autofillContainer}>
       <input
         type="file"
         className={styles.fileInput}
@@ -21,19 +22,25 @@ const Autofill = ({ isUploaded, isLoading, onFileSelect }: Props) => {
           onFileSelect(e.target.files?.[0] ?? null)
         }
       />
-      <div>
-        <div>Autofill from resume</div>
-        <div>Upload your resume here to autofill key application fields.</div>
-        {isUploaded && (
+      <div className={styles.autofillContent}>
+        <div className={styles.autofillMain}>
           <div>
-            <div>Autofill completed!</div>
+            <h2 className={styles.autofillTitle}>Autofill from resume</h2>
+            <p className={styles.autofillSubtitle}>
+              Upload your resume here to autofill key application fields.
+            </p>
+          </div>
+          <Button type="button" onClick={() => ref.current?.click()}>
+            {isLoading ? "Processing..." : "Upload File"}
+          </Button>
+        </div>
+        {isUploaded && (
+          <div className={styles.success}>
+            <h2>Autofill completed!</h2>
             <div>Please review the information we filled in for you.</div>
           </div>
         )}
       </div>
-      <button type="button" onClick={() => ref.current?.click()}>
-        {isLoading ? "Processing..." : "Upload File"}
-      </button>
     </section>
   );
 };

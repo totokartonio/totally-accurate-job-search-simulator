@@ -1,0 +1,17 @@
+.header {
+  padding: var(--space-2) var(--space-4);
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-variation-settings: "YEAR" 1979;
+  font-size: 40px;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+@media (max-width: 1200px) {
+  .logo {
+    font-size: var(--font-size-2xl);
+  }
+}

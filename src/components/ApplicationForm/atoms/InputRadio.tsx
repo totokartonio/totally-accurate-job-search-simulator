@@ -1,4 +1,5 @@
 import type { ChangeEvent } from "react";
+import styles from "../ApplicationForm.module.css";
 
 type RadioValues = {
   id: string;
@@ -11,13 +12,28 @@ type Props = {
   name: string;
   selectedVal: string | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  id: string;
+  required?: boolean;
 };
 
-const InputRadio = ({ name, values, selectedVal, onChange }: Props) => {
+const InputRadio = ({
+  name,
+  values,
+  selectedVal,
+  onChange,
+  label,
+  id,
+  required = false,
+}: Props) => {
   return (
-    <div>
+    <fieldset id={id} className={styles.fieldset}>
+      <label htmlFor={id} className={styles.label}>
+        {label}
+        {required && <sup className={styles.required}>*</sup>}
+      </label>
       {values.map((val) => (
-        <div key={val.id}>
+        <div key={val.id} className={styles.radioInput}>
           <input
             type="radio"
             name={name}
@@ -29,7 +45,7 @@ const InputRadio = ({ name, values, selectedVal, onChange }: Props) => {
           <label htmlFor={val.id}>{val.label}</label>
         </div>
       ))}
-    </div>
+    </fieldset>
   );
 };
 

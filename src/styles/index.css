@@ -1,12 +1,79 @@
 :root {
   --radius-sm: 4px;
+  --radius-m: 8px;
+  --radius-lg: 16px;
   /* Colors */
   --border: black;
   --backdrop: rgba(255, 255, 255, 0.6);
-  --light-gray: #ccc;
-  --dark-gray: #333;
+  --light-gray: hsl(0, 0%, 80%);
+  --medium-gray: hsl(0, 0%, 55%);
+  --dark-gray: hsl(0, 0%, 20%);
+  --accent: hsl(271, 93%, 53%);
+  --accent-hover: hsl(271, 93%, 73%);
+  --accent-subtle: hsl(271, 93%, 93%);
+  --surface: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --green: hsl(142, 49%, 44%);
 
   /* Spacing */
   --space-1: 4px;
-  --space-2: 30px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+
+  /* Fonts */
+  --font-logo: "Climate Crisis", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
+
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+
+  /* Animations */
+  --transition-fast: 150ms ease;
+  --transition-quote: 500ms;
+}
+
+body {
+  font-family: var(--font-body);
+  min-height: 100vh;
+  background: linear-gradient(
+    160deg,
+    var(--surface) 0%,
+    var(--accent-subtle) 100%
+  );
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+  color: var(--dark-gray);
+}
+
+h1 {
+  font-size: var(--font-size-2xl);
+}
+
+h2 {
+  font-size: var(--font-size-xl);
+}
+
+@media (max-width: 700px) {
+  :root {
+    --font-size-sm: 0.875rem;
+    --font-size-base: 0.9rem;
+    --font-size-lg: 1rem;
+    --font-size-xl: 1.2rem;
+    --font-size-2xl: 1.5rem;
+  }
 }
