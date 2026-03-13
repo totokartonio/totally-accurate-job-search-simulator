@@ -12,6 +12,10 @@ import styles from "./ApplicationForm.module.css";
 import { PRONOUNCES } from "../../data/pronounces";
 import { InputCheckbox } from "./atoms/InputCheckbox";
 
+type Props = {
+  onSubmit: () => void;
+};
+
 type FormData = {
   firstName: string;
   lastName: string;
@@ -34,7 +38,7 @@ const initFormData = {
   consent: false,
 };
 
-const ApplicationForm = () => {
+const ApplicationForm = ({ onSubmit }: Props) => {
   const [formData, setFormData] = useState<FormData>(initFormData);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +46,7 @@ const ApplicationForm = () => {
 
   const handleSubmit: SubmitEventHandler = (e) => {
     e.preventDefault();
-    console.log("Application submitted");
+    onSubmit();
   };
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
