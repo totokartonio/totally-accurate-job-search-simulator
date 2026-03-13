@@ -9,7 +9,7 @@ const Results = ({ onClick }: Props) => {
   return (
     <div className={styles.container}>
       <h1>Your application status update</h1>
-      <div className={styles.content}>
+      <div>
         <p>Thank you for taking the time to apply for this position.</p>
         <br />
         <p>

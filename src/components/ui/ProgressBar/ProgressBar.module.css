@@ -15,13 +15,13 @@
 .progress::-webkit-progress-value {
   background: var(--accent);
   border-radius: 4px;
-  transition: width 1s ease;
+  transition: width 0.5s ease;
 }
 
 .progress::-moz-progress-bar {
   background: var(--accent);
   border-radius: 4px;
-  transition: width 1s ease;
+  transition: width 0.5s ease;
 }
 
 .label {
