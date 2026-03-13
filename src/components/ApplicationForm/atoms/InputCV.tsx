@@ -28,7 +28,6 @@ const InputCV = ({ ref, onChange, uploadedFile }: Props) => {
         tabIndex={-1}
         name="cv"
         id="cv"
-        required
         multiple={false}
         className={styles.fileInput}
         ref={ref}
