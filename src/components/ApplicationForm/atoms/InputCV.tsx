@@ -1,5 +1,7 @@
 import type { ChangeEvent, RefObject } from "react";
 import styles from "../ApplicationForm.module.css";
+import Button from "../../ui/Button";
+import TrashIcon from "../../../assets/trash.svg?react";
 
 type Props = {
   ref: RefObject<HTMLInputElement | null>;
@@ -19,8 +21,8 @@ const InputCV = ({ ref, onChange, uploadedFile }: Props) => {
 
   return (
     <div className={styles.input}>
-      <label htmlFor="cv">
-        CV<sup>*</sup>
+      <label htmlFor="cv" className={styles.label}>
+        CV<sup className={styles.required}>*</sup>
       </label>
       <input
         accept="application/pdf,.pdf,application/msword,.doc,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx,application/vnd.oasis.opendocument.text,.odt,application/rtf,.rtf,image/*,video/*,audio/*"
@@ -36,17 +38,23 @@ const InputCV = ({ ref, onChange, uploadedFile }: Props) => {
       {uploadedFile ? (
         <div className={styles.cvUploaded}>
           <span className={styles.cvFileName}>{uploadedFile.name}</span>
-          <button type="button" onClick={handleDelete}>
-            Delete
-          </button>
-          <button type="button" onClick={() => ref.current?.click()}>
-            Replace
-          </button>
+          <div className={styles.buttonGroup}>
+            <button
+              type="button"
+              onClick={handleDelete}
+              className={styles.deleteButton}
+            >
+              <TrashIcon />
+            </button>
+            <Button type="button" onClick={() => ref.current?.click()}>
+              Replace
+            </Button>
+          </div>
         </div>
       ) : (
-        <button type="button" onClick={() => ref.current?.click()}>
+        <Button type="button" onClick={() => ref.current?.click()}>
           Upload File
-        </button>
+        </Button>
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import type { ChangeEvent } from "react";
+import styles from "../ApplicationForm.module.css";
 
 type Props = {
   checked: boolean;
@@ -7,18 +8,21 @@ type Props = {
 
 const InputCheckbox = ({ checked, onChange }: Props) => {
   return (
-    <div>
-      <input
-        type="checkbox"
-        name="consent"
-        id="consent"
-        checked={checked}
-        onChange={onChange}
-      />
-      <label htmlFor="consent">
+    <div className={styles.checkboxContainer}>
+      <p>
         Do you consent to us keeping your data for future opportunities? We'll
         definitely contact you if anything comes up — pinky promise!
-      </label>
+      </p>
+      <div className={styles.checkbox}>
+        <input
+          type="checkbox"
+          name="consent"
+          id="consent"
+          checked={checked}
+          onChange={onChange}
+        />
+        <label htmlFor="consent">I agree</label>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { Autofill } from "./atoms/Autofill";
 import styles from "./ApplicationForm.module.css";
 import { PRONOUNCES } from "../../data/pronounces";
 import { InputCheckbox } from "./atoms/InputCheckbox";
+import Button from "../ui/Button";
 
 type Props = {
   onSubmit: () => void;
@@ -40,7 +41,7 @@ const initFormData = {
 
 const ApplicationForm = ({ onSubmit }: Props) => {
   const [formData, setFormData] = useState<FormData>(initFormData);
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, setState] = useState<"idle" | "loading" | "autofilled">("idle");
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -53,7 +54,7 @@ const ApplicationForm = ({ onSubmit }: Props) => {
   };
   const handleAutofillFileSelect = (file: File | null) => {
     if (!file) return;
-    setIsLoading(true);
+    setState("loading");
     setTimeout(() => {
       setFormData((prev) => ({
         ...prev,
@@ -62,27 +63,35 @@ const ApplicationForm = ({ onSubmit }: Props) => {
         lastName: "Smith",
         email: "ljialiw@ILJA$3as.com",
       }));
-      setIsLoading(false);
+      setState("autofilled");
     }, 2000);
   };
 
-  const isUploaded = !!formData.cv;
+  const isUploaded = state === "autofilled";
+  const isLoading = state === "loading";
+
+  const isValid =
+    formData.firstName.trim() !== "" &&
+    formData.lastName.trim() !== "" &&
+    formData.email.trim() !== "" &&
+    formData.cv !== null &&
+    formData.pronoun !== null;
 
   return (
-    <div>
+    <div className={styles.container}>
       <Autofill
         isUploaded={isUploaded}
         isLoading={isLoading}
         onFileSelect={handleAutofillFileSelect}
       />
-      <section>
+      <section className={styles.content}>
         {isLoading && (
           <div className={styles.spinnerOverlay}>
             <div className={styles.spinner} />
           </div>
         )}
-        <h2>Application Details</h2>
-        <form onSubmit={handleSubmit}>
+        <h1>Application Details</h1>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <Input
             label="First Name"
             type="text"
@@ -128,10 +137,13 @@ const ApplicationForm = ({ onSubmit }: Props) => {
             onChange={handleChange}
           />
           <InputRadio
+            label="Pronoun"
+            id="pronoun"
             values={PRONOUNCES}
             name="pronoun"
             selectedVal={formData.pronoun}
             onChange={handleChange}
+            required
           />
           <Input
             label="What are your salary expectations for this role (gross annual
@@ -148,7 +160,9 @@ const ApplicationForm = ({ onSubmit }: Props) => {
               setFormData({ ...formData, consent: e.target.checked })
             }
           />
-          <button type="submit">Submit Application</button>
+          <Button type="submit" disabled={!isValid}>
+            Submit Application
+          </Button>
         </form>
       </section>
     </div>
