@@ -30,7 +30,11 @@ const Autofill = ({ isUploaded, isLoading, onFileSelect }: Props) => {
               Upload your resume here to autofill key application fields.
             </p>
           </div>
-          <Button type="button" onClick={() => ref.current?.click()}>
+          <Button
+            type="button"
+            onClick={() => ref.current?.click()}
+            disabled={isLoading}
+          >
             {isLoading ? "Processing..." : "Upload File"}
           </Button>
         </div>

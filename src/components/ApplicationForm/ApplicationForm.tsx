@@ -9,7 +9,7 @@ import { InputRadio } from "./atoms/InputRadio";
 import { InputCV } from "./atoms/InputCV";
 import { Autofill } from "./atoms/Autofill";
 import styles from "./ApplicationForm.module.css";
-import { PRONOUNCES } from "../../data/pronounces";
+import { PRONOUNS } from "../../data/pronouns";
 import { InputCheckbox } from "./atoms/InputCheckbox";
 import Button from "../ui/Button";
 
@@ -139,7 +139,7 @@ const ApplicationForm = ({ onSubmit }: Props) => {
           <InputRadio
             label="Pronoun"
             id="pronoun"
-            values={PRONOUNCES}
+            values={PRONOUNS}
             name="pronoun"
             selectedVal={formData.pronoun}
             onChange={handleChange}

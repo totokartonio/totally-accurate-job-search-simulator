@@ -22,17 +22,18 @@ const LoadingScreen = ({ onComplete }: Props) => {
   const [quoteIndex, setQuoteIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (value >= 100) {
-      setState("complete");
-      return;
-    }
-
     const timerId = setInterval(() => {
-      setValue((prev) => prev + 1);
+      setValue((prev) => {
+        if (prev >= 99) {
+          clearInterval(timerId);
+          setState("complete");
+          return 100;
+        }
+        return prev + 1;
+      });
     }, 150);
-
     return () => clearInterval(timerId);
-  }, [value]);
+  }, []);
 
   useEffect(() => {
     const timerId = setInterval(() => {
