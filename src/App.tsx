@@ -2,17 +2,23 @@ import { useState } from "react";
 import ApplicationForm from "./components/ApplicationForm";
 import Layout from "./components/ui/Layout";
 import LoadingScreen from "./components/LoadingScreen";
+import Results from "./components/Results";
+import StartScreen from "./components/StartScreen";
 
-type StateType = "idle" | "filling" | "uploading" | "finished";
+type StateType = "start" | "form" | "loading" | "results";
 
 function App() {
-  const [state, setState] = useState<StateType>("filling");
+  const [state, setState] = useState<StateType>("start");
 
   const renderComponent = () => {
-    if (state === "filling")
-      return <ApplicationForm onSubmit={() => setState("uploading")} />;
-    if (state === "uploading")
-      return <LoadingScreen onComplete={() => setState("filling")} />;
+    if (state === "start")
+      return <StartScreen onClick={() => setState("form")} />;
+    if (state === "form")
+      return <ApplicationForm onSubmit={() => setState("loading")} />;
+    if (state === "loading")
+      return <LoadingScreen onComplete={() => setState("results")} />;
+    if (state === "results")
+      return <Results onClick={() => setState("start")} />;
   };
 
   return (
